@@ -18,7 +18,7 @@
 * { box-sizing: border-box; }
 
 body {
-  min-width: 320px;
+  min-width: 0;
   min-height: 100vh;
   margin: 0;
   background: #000;
@@ -48,11 +48,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid #4a91d2; outline-offs
 .intro-block p { max-width: 225px; margin: 18px 0 0; color: #727a73; font-size: 12px; line-height: 1.65; }
 
 .watch-assembly { width: min(86vw, 420px); max-width: 420px; justify-self: center; position: relative; display: flex; align-items: center; flex-direction: column; filter: drop-shadow(0 24px 22px rgba(32,38,35,.17)); }
-.watch-band { position: relative; z-index: 0; width: 40%; height: 78px; overflow: hidden; border: 1px solid #25282b; background: repeating-linear-gradient(90deg, #25282c 0 3px, #34383d 3px 5px, #181a1e 5px 7px), linear-gradient(90deg, #16181c, #41454a 48%, #17191d); }
+.watch-band { position: relative; z-index: 0; width: 40%; aspect-ratio: 2.2 / 1; overflow: hidden; border: 1px solid #25282b; background: repeating-linear-gradient(90deg, #25282c 0 3px, #34383d 3px 5px, #181a1e 5px 7px), linear-gradient(90deg, #16181c, #41454a 48%, #17191d); }
 .watch-band::before, .watch-band::after { position: absolute; inset: 0; content: ''; background: repeating-linear-gradient(0deg, transparent 0 4px, rgba(230,232,234,.08) 4px 5px, transparent 5px 8px); }
 .watch-band span { position: absolute; top: 0; bottom: 0; left: 15%; right: 15%; border-right: 1px solid rgba(255,255,255,.09); border-left: 1px solid rgba(255,255,255,.09); }
 .watch-band--top { margin-bottom: -13px; border-radius: 22px 22px 5px 5px; mask-image: linear-gradient(to bottom, black 75%, transparent); }
-.watch-band--bottom { height: 78px; margin-top: -13px; border-radius: 5px 5px 22px 22px; mask-image: linear-gradient(to top, black 75%, transparent); }
+.watch-band--bottom { margin-top: -13px; border-radius: 5px 5px 22px 22px; mask-image: linear-gradient(to top, black 75%, transparent); }
 .watch-case { z-index: 1; position: relative; width: 100%; aspect-ratio: 1; padding: 13px; border: 2px solid #141619; border-radius: 50%; background: linear-gradient(135deg, #414449 0%, #17191c 14%, #25282b 48%, #111315 86%, #393c40 100%); box-shadow: inset 0 0 0 2px #08090a, inset 0 0 0 4px #505257, 0 7px 12px rgba(10,12,13,.4); }
 .watch-bezel { width: 100%; height: 100%; padding: 8px; border-radius: 50%; background: linear-gradient(145deg, #101214, #050607 60%, #24272a); box-shadow: inset 0 0 0 1px #464a4e; }
 .watch-screen { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; overflow: hidden; border-radius: 50%; background: #202a30; color: #f4f5f2; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
@@ -131,14 +131,14 @@ button:focus-visible, a:focus-visible { outline: 3px solid #4a91d2; outline-offs
 
 @media (min-width: 1450px) { .simulation-layout { min-height: 780px; }.watch-assembly { max-width: 400px; } }
 @media (max-width: 960px) {
-  .app-shell { width: min(780px, calc(100% - 48px)); }
+  .app-shell { width: 100%; min-height: 100svh; padding: 8px; }
   .simulation-layout { min-height: 0; grid-template-columns: minmax(180px, 1fr) minmax(300px, 350px); gap: 30px 26px; padding: 54px 0 48px; }
   .intro-block { grid-column: 1; grid-row: 1; align-self: end; padding: 0 0 0 8px; }
   .watch-assembly { grid-column: 2; grid-row: 1 / span 2; max-width: 350px; }
   .status-panel { grid-column: 1; grid-row: 2; justify-self: start; align-self: start; max-width: 285px; }
 }
 @media (max-width: 620px) {
-  .app-shell { width: min(100% - 32px, 440px); }
+  .app-shell { width: 100%; min-height: 100svh; padding: 8px; }
   .site-header { height: 67px; gap: 13px; }
   .brand-name { font-size: 19px; }
   .brand-mark { width: 21px; height: 21px; }
@@ -152,26 +152,26 @@ button:focus-visible, a:focus-visible { outline: 3px solid #4a91d2; outline-offs
   .intro-block h1 { margin: 13px 0 8px; font-size: 39px; }
   .intro-block h1 br { display: none; }
   .intro-block p { max-width: none; margin-top: 8px; font-size: 11px; }
-  .watch-assembly { width: min(100%, 330px); max-width: 330px; }
-  .watch-band { height: 79px; }
-  .watch-band--bottom { height: 82px; }
-  .watch-case { padding: 11px; border-radius: 66px; }
-  .watch-bezel { padding: 7px; border-radius: 53px; }
-  .watch-screen { border-radius: 41px; }
-  .watch-status { padding: 12px 17px 0; font-size: 7px; }
-  .status-time { font-size: 10px; }
-  .route-active-label { top: 39px; left: 17px; font-size: 6px; }
-  .map-wrap { inset: 48px 0 102px; }
-  .watch-guidance { bottom: 25px; min-height: 95px; padding: 9px 17px 8px; }
-  .guidance-topline { min-height: 43px; }
-  .distance-number { font-size: 36px; }
-  .direction-arrow { width: 34px; height: 34px; }
-  .direction-arrow svg { width: 27px; height: 27px; }
-  .instruction-text { font-size: 10px; }
-  .watch-footer { right: 17px; bottom: 9px; left: 17px; }
-  .watch-controls { margin-top: -2px; }
-  .control-button { min-height: 42px; padding: 0 15px; font-size: 9px; }
-  .reset-button { width: 42px; height: 42px; }
+  .watch-assembly { width: min(calc(100vw - 16px), 68svh, 330px); max-width: none; }
+  .watch-case { padding: 11px; border-radius: 50%; }
+  .watch-bezel { padding: 7px; border-radius: 50%; }
+  .watch-screen { border-radius: 50%; }
+  .watch-status { top: 8%; right: 7%; left: 7%; gap: 3px; font-size: 6px; }
+  .watch-status .status-light { width: 5px; height: 5px; }
+  .status-time { font-size: 6px; }
+  .route-active-label { top: 17%; left: 0; font-size: 6px; }
+  .watch-progress { top: 23%; height: 3px; }
+  .map-wrap { inset: 0 0 40%; }
+  .watch-guidance { right: 0; bottom: 23%; left: 0; height: 34%; min-height: 0; padding: 3px 5px; }
+  .guidance-topline { min-height: 0; gap: 4px; }
+  .distance-number { font-size: clamp(22px, 14vw, 32px); }
+  .distance-unit { padding-top: 4px; font-size: 11px; }
+  .direction-arrow { width: 27px; height: 27px; border-radius: 8px; }
+  .direction-arrow svg { width: 21px; height: 21px; }
+  .instruction-text { padding-top: 2px; font-size: clamp(7px, 3vw, 9px); }
+  .watch-controls { right: 8%; bottom: 3%; left: 8%; gap: 5px; }
+  .control-button { width: 25px; min-width: 25px; height: 25px; min-height: 25px; padding: 0; }
+  .reset-button { width: 25px; height: 25px; }
   .status-panel { max-width: none; padding: 19px 19px 17px; }
   .site-footer { gap: 10px; font-size: 7px; }
 }
