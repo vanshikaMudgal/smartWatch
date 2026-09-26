@@ -68,46 +68,38 @@ function Watch({ stepIndex, isRunning, isPaused, complete, onStart, onPause, onR
 
   return (
     <section className={`watch-assembly${complete ? ' watch-assembly--safe' : ''}`} aria-label="Worker safety smartwatch simulation">
-      <div className="watch-band watch-band--top" aria-hidden="true"><span /></div>
-      <div className="watch-case">
-        <div className="watch-bezel">
-          <div className="watch-screen">
-            <div className={`watch-status ${complete ? 'watch-status--safe' : ''}`}>
-              <span className="status-light" />
-              <span>{complete ? 'SAFE ZONE' : 'ROCKFALL DETECTED'}</span>
-              <span className="status-time">STEP {String(stepIndex + 1).padStart(2, '0')} / 06</span>
-            </div>
-            <div className={`route-active-label${complete ? ' route-active-label--safe' : ''}`}>
-              {complete ? 'SAFE ZONE SECURED' : 'EVACUATION ROUTE ACTIVE'}
-            </div>
-            <progress className={`watch-progress${complete ? ' watch-progress--safe' : ''}`} aria-label="Route progress" value={stepIndex} max={steps.length - 1} />
-            <div className="map-wrap"><RouteMap stepIndex={stepIndex} complete={complete} /></div>
-            <div className={`watch-guidance${complete ? ' watch-guidance--safe' : ''}`} aria-live="polite">
-              <div className="guidance-topline">
-                <span className="distance-number">{complete ? 'SAFE' : step.distance}</span>
-                <span className="distance-unit">{complete ? '' : 'm'}</span>
-                <span className="direction-arrow"><DirectionIcon turn={step.turn} /></span>
-              </div>
-              <div className="instruction-text">{step.instruction}</div>
-            </div>
-            <div className="watch-controls" aria-label="Simulation controls">
-              {!isRunning ? (
-                <button className="control-button control-button--primary" onClick={onStart} disabled={complete} aria-label={getStartLabel(isPaused, complete)} title={getStartLabel(isPaused, complete)}>
-                  <Play size={15} fill="currentColor" />
-                </button>
-              ) : (
-                <button className="control-button control-button--primary" onClick={onPause} aria-label="Pause simulation" title="Pause simulation">
-                  <Pause size={15} fill="currentColor" />
-                </button>
-              )}
-              <button className="reset-button" onClick={onReset} aria-label="Reset simulation" title="Reset simulation"><RotateCcw size={16} /></button>
-            </div>
-          </div>
+      <div className="watch-screen">
+        <div className={`watch-status ${complete ? 'watch-status--safe' : ''}`}>
+          <span className="status-light" />
+          <span>{complete ? 'SAFE ZONE' : 'ROCKFALL DETECTED'}</span>
+          <span className="status-time">STEP {String(stepIndex + 1).padStart(2, '0')} / 06</span>
         </div>
-        <div className="watch-crown" aria-hidden="true"><i /><i /><i /></div>
-        <div className="watch-side-button" aria-hidden="true" />
+        <div className={`route-active-label${complete ? ' route-active-label--safe' : ''}`}>
+          {complete ? 'SAFE ZONE SECURED' : 'EVACUATION ROUTE ACTIVE'}
+        </div>
+        <progress className={`watch-progress${complete ? ' watch-progress--safe' : ''}`} aria-label="Route progress" value={stepIndex} max={steps.length - 1} />
+        <div className="map-wrap"><RouteMap stepIndex={stepIndex} complete={complete} /></div>
+        <div className={`watch-guidance${complete ? ' watch-guidance--safe' : ''}`} aria-live="polite">
+          <div className="guidance-topline">
+            <span className="distance-number">{complete ? 'SAFE' : step.distance}</span>
+            <span className="distance-unit">{complete ? '' : 'm'}</span>
+            <span className="direction-arrow"><DirectionIcon turn={step.turn} /></span>
+          </div>
+          <div className="instruction-text">{step.instruction}</div>
+        </div>
+        <div className="watch-controls" aria-label="Simulation controls">
+          {!isRunning ? (
+            <button className="control-button control-button--primary" onClick={onStart} disabled={complete} aria-label={getStartLabel(isPaused, complete)} title={getStartLabel(isPaused, complete)}>
+              <Play size={15} fill="currentColor" />
+            </button>
+          ) : (
+            <button className="control-button control-button--primary" onClick={onPause} aria-label="Pause simulation" title="Pause simulation">
+              <Pause size={15} fill="currentColor" />
+            </button>
+          )}
+          <button className="reset-button" onClick={onReset} aria-label="Reset simulation" title="Reset simulation"><RotateCcw size={16} /></button>
+        </div>
       </div>
-      <div className="watch-band watch-band--bottom" aria-hidden="true"><span /></div>
     </section>
   );
 }
